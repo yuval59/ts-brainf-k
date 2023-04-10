@@ -1,0 +1,19 @@
+{
+  "name": "ts-brainf-k",
+  "version": "1.0.0",
+  "description": "This is an implementation of the famous esoteric programming language, Brainfuck.\r This is meant as a fun project and not as an actual \"good\" implementation, and as such I will be focusing on \"proper\" best practices and readability.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuval59/ts-brainf-k.git"
+  },
+  "author": "Yuval Maron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuval59/ts-brainf-k/issues"
+  },
+  "homepage": "https://github.com/yuval59/ts-brainf-k#readme"
+}
