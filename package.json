@@ -12,7 +12,8 @@
     "examples:cell-size": "ts-node src/examples/cell-size",
     "examples:compute-e": "ts-node src/examples/compute-e",
     "examples:compute-factorials": "ts-node src/examples/compute-factorials",
-    "examples:compute-fibonacci": "ts-node src/examples/compute-fibonacci"
+    "examples:compute-fibonacci": "ts-node src/examples/compute-fibonacci",
+    "examples:compute-impeccable": "ts-node src/examples/compute-impeccable"
   },
   "repository": {
     "type": "git",
