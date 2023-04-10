@@ -1,13 +1,7 @@
 import { BrainFuckVM } from './brainfuck-vm'
 
-type handlers = {
-  output: outputFunction[]
-  newLine: newLineFunction[]
-  complete: completeFunction[]
-}
-type outputFunction = (output: string) => any
-type newLineFunction = (output: string) => any
-type completeFunction = (output: string, finalTape: number[]) => any
+type handlers = { [key: string]: outputFunction[] }
+type outputFunction = (output: string, finalTape?: number[]) => any
 type eventOptions = 'output' | 'newLine' | 'complete'
 
 export class BrainFuckInterpreter {
