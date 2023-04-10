@@ -4,7 +4,11 @@
   "description": "This is an implementation of the famous esoteric programming language, Brainfuck.\r This is meant as a fun project and not as an actual \"good\" implementation, and as such I will be focusing on \"proper\" best practices and readability.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "nodemon dist/index.js",
+    "prepublishOnly": "npm run build && npm run start",
+    "dev": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/yuval59/ts-brainf-k/issues"
   },
-  "homepage": "https://github.com/yuval59/ts-brainf-k#readme"
+  "homepage": "https://github.com/yuval59/ts-brainf-k#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
 }
