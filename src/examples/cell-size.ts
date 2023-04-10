@@ -22,4 +22,6 @@ If the interpreter errors on overflow this is where it'll happen
 Clean up used cells.
 [[-]<]`
 
-new Program(programCode)
+const prog = new Program(programCode)
+prog.on('complete', console.log)
+prog.run()

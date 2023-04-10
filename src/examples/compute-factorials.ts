@@ -24,4 +24,6 @@ This program computes the factorials (https://oeis.org/A000142). Because this
 sequence is infinitely long, this program doesn't terminate on its own; you will
 have to kill it. This program is much faster than my earlier factorial program.`
 
-new Program(programCode)
+const prog = new Program(programCode)
+prog.on('newLine', console.log)
+prog.run()

@@ -4,7 +4,12 @@ const programCode = `Basic Hello World ! program
 
 ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
 
-This ends with a newline`
+This ends with a newline
 
-const execution = new Program(programCode)
-execution.on('complete', (output: string) => console.log(output))
+<.>.
+
+Output an exclamation mark to check the event is firing correctly`
+
+const prog = new Program(programCode)
+prog.on('newLine', console.log)
+prog.run()

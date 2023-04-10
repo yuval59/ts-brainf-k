@@ -41,4 +41,6 @@ infinitely long, this program doesn't terminate on its own; you will have to
 kill it. The fact that it doesn't output any linefeeds may also give certain
 implementations trouble, including some of mine.`
 
-new Program(programCode)
+const prog = new Program(programCode)
+prog.on('output', console.log)
+prog.run()

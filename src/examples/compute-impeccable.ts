@@ -17,7 +17,8 @@ http://brainfuck.org/]
 This program outputs sequence (http://oeis.org/A014221). Although this sequence
 is technically nonterminating, computing its eighth term would require more
 storage than can exist in this universe, so you may as well kill this program
-after the seventh term.
-`
+after the seventh term.`
 
-new Program(programCode)
+const prog = new Program(programCode)
+prog.on('output', console.log)
+prog.run()

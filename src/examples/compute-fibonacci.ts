@@ -11,4 +11,6 @@ http://www.hevanet.com/cristofd/brainfuck/
     ]<<<
 ]`
 
-new Program(programCode)
+const prog = new Program(programCode)
+prog.on('output', console.log)
+prog.run()
