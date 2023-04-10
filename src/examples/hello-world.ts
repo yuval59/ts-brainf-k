@@ -6,4 +6,5 @@ const programCode = `Basic Hello World ! program
 
 This ends with a newline`
 
-new Program(programCode)
+const execution = new Program(programCode)
+execution.on('complete', (output: string) => console.log(output))

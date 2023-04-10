@@ -1,6 +1,11 @@
 import { State } from './state'
 
+type handlers = { [action: string]: outputFunction[] }
+type outputFunction = (output: string) => any
+type eventOptions = 'output' | 'newLine' | 'complete'
+
 export class Program {
+  //#region Operating code
   // Initial conditions (not static)
   #program: string
   #input: string = ''
@@ -9,8 +14,12 @@ export class Program {
   #state: State
   #pointer: number = 0
 
-  // Final condition
-  #result: string = ''
+  // Event handlers
+  #handlers: handlers = {
+    output: [],
+    newLine: [],
+    complete: [],
+  }
 
   constructor(program: string, input?: string) {
     this.#program = program
@@ -18,7 +27,6 @@ export class Program {
     this.#state = new State()
 
     this.#run()
-    console.log(this.Result)
   }
 
   private get Command(): string {
@@ -30,14 +38,32 @@ export class Program {
   }
 
   #run(): void {
-    let res = ''
+    let line = ''
+    let result = ''
 
     while (this.#pointer < this.#program.length) {
       const stepResult = this.#step()
-      if (stepResult) res += stepResult
+      if (!stepResult) continue
+
+      line += stepResult
+      result += stepResult
+
+      for (const handler of this.#handlers.output) {
+        handler(stepResult as string)
+      }
+
+      if (stepResult != '\n') continue
+
+      for (const handler of this.#handlers.newLine) {
+        handler(line)
+      }
+
+      line = ''
     }
 
-    this.#result = res
+    for (const handler of this.#handlers.complete) {
+      handler(result)
+    }
   }
 
   #step(): unknown {
@@ -107,7 +133,9 @@ export class Program {
         this.#pointer++
     }
   }
+  //#endregion
 
+  //#region Getters
   get Program(): string {
     return this.#program
   }
@@ -115,8 +143,9 @@ export class Program {
   get State(): number[] {
     return this.#state.Tape
   }
+  //#endregion
 
-  get Result(): string {
-    return this.#result
+  on(event: eventOptions, handler: outputFunction): void {
+    if (this.#handlers[event]) this.#handlers[event].push(handler)
   }
 }
