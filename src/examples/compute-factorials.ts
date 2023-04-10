@@ -1,4 +1,4 @@
-import { Program } from '../interpreter/program'
+import { BrainFuckInterpreter } from '../interpreter/brainfuck'
 
 const programCode = `[factorial2.b -- compute factorials
 (c) 2019 Daniel B. Cristofani
@@ -24,6 +24,6 @@ This program computes the factorials (https://oeis.org/A000142). Because this
 sequence is infinitely long, this program doesn't terminate on its own; you will
 have to kill it. This program is much faster than my earlier factorial program.`
 
-const prog = new Program(programCode)
+const prog = new BrainFuckInterpreter(programCode)
 prog.on('newLine', console.log)
 prog.run()

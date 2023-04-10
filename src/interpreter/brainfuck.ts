@@ -10,7 +10,7 @@ type newLineFunction = (output: string) => any
 type completeFunction = (output: string, finalTape: number[]) => any
 type eventOptions = 'output' | 'newLine' | 'complete'
 
-export class Program {
+export class BrainFuckInterpreter {
   //#region Operating code
   // Initial conditions (not static)
   #program: string

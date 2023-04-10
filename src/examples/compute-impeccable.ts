@@ -1,4 +1,4 @@
-import { Program } from '../interpreter/program'
+import { BrainFuckInterpreter } from '../interpreter/brainfuck'
 
 const programCode = `[impeccable.b -- compute impeccable numbers
 (c) 2016 Daniel B. Cristofani
@@ -19,6 +19,6 @@ is technically nonterminating, computing its eighth term would require more
 storage than can exist in this universe, so you may as well kill this program
 after the seventh term.`
 
-const prog = new Program(programCode)
+const prog = new BrainFuckInterpreter(programCode)
 prog.on('output', console.log)
 prog.run()
