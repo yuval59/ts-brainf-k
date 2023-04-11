@@ -1,6 +1,5 @@
 import { State } from './state'
-
-const recognizedCommands = [',', '.', '-', '+', '<', '>', '[', ']']
+import { sterilizeProgram } from './utils'
 
 export class BrainFuckVM {
   // Initial conditions (not static)
@@ -12,10 +11,7 @@ export class BrainFuckVM {
   #pointer: number = 0
 
   constructor(program: string, input?: string) {
-    this.#program = program
-      .split('')
-      .filter((char) => recognizedCommands.includes(char))
-      .join('')
+    this.#program = sterilizeProgram(program)
     if (input) this.#input = input
   }
 

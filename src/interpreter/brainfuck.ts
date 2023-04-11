@@ -1,4 +1,5 @@
 import { BrainFuckVM } from './brainfuck-vm'
+import { sterilizeProgram } from './utils'
 
 type handlers = { [key: string]: outputFunction[] }
 type outputFunction = (output: string, finalTape?: number[]) => any
@@ -18,20 +19,20 @@ export class BrainFuckInterpreter {
   }
 
   constructor(program: string, input?: string) {
-    this.#program = program
+    this.#program = sterilizeProgram(program)
     if (input) this.#input = input
   }
 
   run(): void {
-    let pointer = 0
     const VM = new BrainFuckVM(this.#program, this.#input)
 
     let lastRes: unknown
     let line = ''
     let result = ''
 
-    while (pointer < this.#program.length) {
-      ;[pointer, lastRes] = VM.step(pointer)
+    let positionInProgram = 0
+    while (positionInProgram < this.#program.length) {
+      ;[positionInProgram, lastRes] = VM.step(positionInProgram)
       if (!lastRes) continue
 
       line += lastRes
