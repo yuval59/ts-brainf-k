@@ -19,10 +19,6 @@ export class BrainFuckVM {
     return this.#program[this.#pointer]
   }
 
-  private get PreviousCommand(): string {
-    return this.#program[this.#pointer - 1]
-  }
-
   get State(): number[] {
     return this.#state.Tape
   }
@@ -75,7 +71,7 @@ export class BrainFuckVM {
           break
         }
 
-        while (this.PreviousCommand != ']') this.#pointer++
+        while ((this.Command as string) != ']') this.#pointer++
 
         break
       }
