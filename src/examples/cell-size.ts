@@ -1,6 +1,7 @@
 import { BrainFuckInterpreter } from '../interpreter/brainfuck'
 
-const programCode = `Calculate the value 256 and test if it's zero
+const programCode = `
+Calculate the value 256 and test if it's zero
 If the interpreter errors on overflow this is where it'll happen
 ++++++++[>++++++++<-]>[<++++>-]
 +<[>-<
@@ -20,7 +21,8 @@ If the interpreter errors on overflow this is where it'll happen
 +++++++++++[>+++>+++++++++>+++++++++>+<<<<-]>-.>-.+++++++.+++++++++++.<.
 >>.++.+++++++..<-.>>-
 Clean up used cells.
-[[-]<]`
+[[-]<]
+`
 
 const prog = new BrainFuckInterpreter(programCode)
 prog.on('complete', console.log)
