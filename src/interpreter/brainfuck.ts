@@ -4,8 +4,6 @@ type handlers = { [key: string]: outputFunction[] }
 type outputFunction = (output: string, finalTape?: number[]) => any
 type eventOptions = 'output' | 'newLine' | 'complete'
 
-const recognizedCommands = [',', '.', '-', '+', '<', '>', '[', ']']
-
 export class BrainFuckInterpreter {
   //#region Operating code
   // Initial conditions (not static)
@@ -21,9 +19,6 @@ export class BrainFuckInterpreter {
 
   constructor(program: string, input?: string) {
     this.#program = program
-      .split('')
-      .filter((char) => recognizedCommands.includes(char))
-      .join('')
     if (input) this.#input = input
   }
 

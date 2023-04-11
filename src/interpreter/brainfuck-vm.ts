@@ -1,7 +1,8 @@
 import { State } from './state'
 
+const recognizedCommands = [',', '.', '-', '+', '<', '>', '[', ']']
+
 export class BrainFuckVM {
-  //#region Operating code
   // Initial conditions (not static)
   #program: string
   #input: string = ''
@@ -10,12 +11,15 @@ export class BrainFuckVM {
   #state: State = new State()
   #pointer: number = 0
 
-  constructor(program: string, input: string) {
+  constructor(program: string, input?: string) {
     this.#program = program
+      .split('')
+      .filter((char) => recognizedCommands.includes(char))
+      .join('')
     if (input) this.#input = input
   }
 
-  private get Command(): string {
+  #getCommand(): string {
     return this.#program[this.#pointer]
   }
 
@@ -26,22 +30,25 @@ export class BrainFuckVM {
   step(pointer: number): [number, unknown?] {
     this.#pointer = pointer
 
-    switch (this.Command) {
+    switch (this.#getCommand()) {
       case '+': {
         this.#state.increment()
         this.#pointer++
+
         break
       }
 
       case '-': {
         this.#state.decrement()
         this.#pointer++
+
         break
       }
 
       case '>': {
         this.#state.moveRight()
         this.#pointer++
+
         break
       }
 
@@ -54,45 +61,50 @@ export class BrainFuckVM {
 
       case '.': {
         this.#pointer++
+
         return [this.#pointer, this.#state.Char]
       }
 
       case ',': {
         this.#state.input(this.#input.charCodeAt(0))
         this.#input = this.#input.slice(1)
-
         this.#pointer++
+
         break
       }
 
       case '[': {
-        if (this.#state.Val) {
+        if (this.#state.Val != 0) {
           this.#pointer++
           break
         }
 
-        while ((this.Command as string) != ']') this.#pointer++
+        let counter = 1
+        while (counter > 0) {
+          this.#pointer++
+
+          if (this.#getCommand() == '[') counter++
+          if (this.#getCommand() == ']') counter--
+        }
+        this.#pointer++
 
         break
       }
 
       case ']': {
-        if (!this.#state.Val) {
-          this.#pointer++
-          break
-        }
+        let counter = 1
 
-        // If you don't use a type assertion here, TypeScript will complain about the comparison appearing unintentionally.
-        while ((this.Command as string) != '[') this.#pointer--
+        while (counter > 0) {
+          this.#pointer--
+
+          if (this.#getCommand() == ']') counter++
+          if (this.#getCommand() == '[') counter--
+        }
 
         break
       }
-
-      default:
-        this.#pointer++
     }
 
     return [this.#pointer]
   }
-  //#endregion
 }

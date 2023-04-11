@@ -19,7 +19,7 @@ export class State {
   }
 
   decrement(): void {
-    if (this.Ref) this.Ref--
+    this.Ref--
   }
 
   moveRight(): void {
@@ -28,7 +28,7 @@ export class State {
   }
 
   moveLeft(): void {
-    this.#pointer ? this.#pointer-- : this.#state.unshift(0)
+    this.#pointer > 0 ? this.#pointer-- : this.#state.unshift(0)
   }
 
   get Char(): string {
