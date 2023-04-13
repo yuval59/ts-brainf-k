@@ -10,7 +10,8 @@
     "dev": "ts-node src/index.ts",
     "examples:hello-world": "ts-node src/examples/hello-world",
     "examples:cell-size": "ts-node src/examples/cell-size",
-    "examples:compute-fibonacci": "ts-node src/examples/compute-fibonacci"
+    "examples:compute-fibonacci": "ts-node src/examples/compute-fibonacci",
+    "examples:print-input-value": "ts-node src/examples/print-input-value"
   },
   "repository": {
     "type": "git",
